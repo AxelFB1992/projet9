@@ -216,3 +216,23 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+#Ajouts manuels
+
+# Environnement
+.env
+
+# Spark
+spark-warehouse/
+metastore_db/
+derby.log
+
+# Data locale
+data/raw/
+data/processed/
+*.csv
+*.parquet
+
+# IDE
+.vscode/
+.idea/
