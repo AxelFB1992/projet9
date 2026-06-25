@@ -221,6 +221,7 @@ __marimo__/
 
 # Environnement
 .env
+.projet9-env
 
 # Spark
 spark-warehouse/
