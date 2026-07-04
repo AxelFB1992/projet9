@@ -115,7 +115,7 @@ Chaque ticket généré contient les champs suivants :
 ### 1. Cloner le dépôt
 
 ```bash
-git clone https://github.com/AxelFB1992/openclassrooms-p9-hybrid-architecture.git
+git clone https://github.com/AxelFB1992/projet9.git
 cd ticket_management
 ```
 
