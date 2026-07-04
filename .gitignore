@@ -228,6 +228,14 @@ spark-warehouse/
 metastore_db/
 derby.log
 
+# Données générées par Spark
+output/
+*.parquet
+_spark_metadata/
+
+# Checkpoints Spark
+checkpoint/
+
 # Data locale
 data/raw/
 data/processed/
@@ -237,3 +245,13 @@ data/processed/
 # IDE
 .vscode/
 .idea/
+
+# Variables d'environnement
+.env
+
+# Fichiers temporaires
+*.tmp
+*.log
+
+# Docker
+.dockerignore

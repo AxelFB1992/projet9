@@ -1,0 +1,94 @@
+version: "3.8"
+
+networks:
+  ticket-network:
+    driver: bridge
+
+volumes:
+  output_tickets:
+  output_agregations:
+
+services:
+
+  redpanda:
+    build:
+      context: ./redpanda
+    container_name: redpanda-tickets
+    networks:
+      - ticket-network
+    ports:
+      - "19093:9092"
+      - "19645:9644"
+    command:
+      - redpanda
+      - start
+      - --advertise-kafka-addr
+      - redpanda-tickets:9092
+      - --overprovisioned
+      - --smp
+      - "1"
+      - --memory
+      - 1G
+      - --reserve-memory
+      - 500M
+      - --node-id
+      - "0"
+      - --check=false
+    healthcheck:
+      test: ["CMD", "rpk", "cluster", "info"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  console:
+    image: docker.redpanda.com/redpandadata/console:v3.7.4
+    container_name: redpanda-tickets-console
+    networks:
+      - ticket-network
+    ports:
+      - "8080:8080"
+    environment:
+      - KAFKA_BROKERS=redpanda-tickets:9092
+    depends_on:
+      - redpanda
+
+  setup:
+    image: docker.redpanda.com/redpandadata/redpanda:v26.1.10
+    container_name: redpanda-setup
+    networks:
+      - ticket-network
+    depends_on:
+      redpanda:
+        condition: service_healthy
+    entrypoint: ["/bin/bash", "-c", "rpk topic create client_tickets --brokers redpanda-tickets:9092 --partitions 3 --replicas 1"]
+    restart: "no"
+
+  producer:
+    build:
+      context: ./producer
+    container_name: ticket-producer
+    networks:
+      - ticket-network
+    depends_on:
+      - setup
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=redpanda-tickets:9092
+      - PYTHONUNBUFFERED=1
+    restart: on-failure
+
+  processor:
+    build:
+      context: ./processor
+    container_name: ticket-processor
+    networks:
+      - ticket-network
+    depends_on:
+      - setup
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=redpanda-tickets:9092
+    ports:
+      - "4040:4040"
+    volumes:
+      - output_tickets:/app/output/tickets
+      - output_agregations:/app/output/agregations_priorite
+    restart: on-failure
