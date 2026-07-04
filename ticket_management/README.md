@@ -173,7 +173,7 @@ print(df_agg.to_string(index=False))
 
 ## Démonstration vidéo
 
-> 📹 [Lien vers la vidéo de démonstration](#)  
+> 📹 [https://www.loom.com/share/d7d9a3ac021a487b85d5dd667cc83504](#)  
 > *(Remplacer par le lien YouTube/Loom après enregistrement)*
 
 La vidéo présente :
