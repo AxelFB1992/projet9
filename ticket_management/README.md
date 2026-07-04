@@ -15,15 +15,15 @@ Ce POC (Proof of Concept) implémente un pipeline de données en temps réel pou
 
 ```mermaid
 flowchart LR
-    subgraph Producer["🎫 Générateur de tickets"]
+    subgraph Producer["🎫 Générateur de tickets - ticket-producer"]
         P[ticket_producer.py\nconfluent-kafka]
     end
 
-    subgraph Redpanda["📨 Redpanda Broker"]
+    subgraph Redpanda["📨 Redpanda Broker - redpanda-tickets"]
         T[(Topic\nclient_tickets\n3 partitions)]
     end
 
-    subgraph Processor["⚡ PySpark Streaming"]
+    subgraph Processor["⚡ PySpark Streaming - ticket-processor"]
         direction TB
         R[readStream\nKafka source]
         T2[Transformation\nAssignation équipe support]
