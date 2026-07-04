@@ -113,6 +113,17 @@ os.makedirs("/app/output/agregations_priorite", exist_ok=True)
 os.makedirs("/app/checkpoint/tickets", exist_ok=True)
 os.makedirs("/app/checkpoint/priorite", exist_ok=True)
 
+#Query permettant d'afficher les messages entrant dans la console quand on regarde les logs
+query_console = (tickets_enrichis
+    .writeStream
+    .outputMode("append")
+    .format("console")
+    .option("truncate", "false")
+    .option("numRows", "5")
+    .option("checkpointLocation", "/app/checkpoint/console")
+    .trigger(processingTime="5 seconds")
+    .start())
+
 # Stream principal — tickets enrichis → Parquet
 query_tickets = (tickets_enrichis
     .writeStream
@@ -177,4 +188,5 @@ query_priorite = (tickets_par_priorite
 # 8. Attendre la terminaison
 # ─────────────────────────────────────────
 #spark.streams.awaitAnyTermination()
-query_tickets.awaitTermination()
+#query_tickets.awaitTermination()
+spark.streams.awaitAnyTermination()
