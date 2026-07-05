@@ -46,7 +46,7 @@ raw_stream = (spark.readStream
 #    .option("kafka.bootstrap.servers", "localhost:19092")
     .option("kafka.bootstrap.servers", bootstrap_servers)
     .option("subscribe", "client_tickets")
-    .option("startingOffsets", "latest")
+    .option("startingOffsets", "latest") # lire seulement les messages qui sont arrivés depuis le lancement de ce script
     #.option("startingOffsets", "earliest")  # lire depuis le début
     .option("failOnDataLoss", "false")  # résilience : ne pas planter si des offsets sont manquants
     .load())
