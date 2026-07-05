@@ -31,7 +31,7 @@ DEMANDES = {
         "Besoin d'une facture pro forma",
         "Erreur sur le montant facture"
     ],
-    "Acces et permissions": [
+    "Accès et permissions": [
         "J'ai besoin d'acces au module de reporting",
         "Demande de creation de compte utilisateur",
         "Mise a jour des droits d'acces",
