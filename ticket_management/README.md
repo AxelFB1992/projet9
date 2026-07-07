@@ -295,10 +295,11 @@ print(df_agg.to_string(index=False))
 > *(Remplacer par le lien YouTube/Loom après enregistrement)*
 
 La vidéo présente :
-- Le lancement du pipeline via `docker compose up`
-- La vérification des tickets dans Redpanda Console
-- Les transformations PySpark en temps réel
-- La lecture des fichiers Parquet exportés
+- L'explication du contexte de l'application et de son utilité.
+- La présentation de l'architecture de l'application via ses répertoires.
+- L'execution du pipeline via `docker compose up et l'analyse des logs.
+- La vérification des tickets dans Redpanda Console.
+- Les transformations PySpark en temps réel.
 
 ---
 
