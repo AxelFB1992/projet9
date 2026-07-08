@@ -4,9 +4,9 @@ networks:
   ticket-network:
     driver: bridge
 
-volumes:
-  output_tickets:
-  output_agregations:
+#volumes:
+#  output_tickets:
+#  output_agregations:
 
 services:
 
@@ -89,6 +89,6 @@ services:
     ports:
       - "4040:4040"
     volumes:
-      - output_tickets:/app/output/tickets
-      - output_agregations:/app/output/agregations_priorite
+      - ./output/tickets:/app/output/tickets
+      - ./output/agregations_priorite:/app/output/agregations_priorite
     restart: on-failure
