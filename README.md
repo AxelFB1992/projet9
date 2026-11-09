@@ -1,5 +1,3 @@
-# projet9 - Modélisez une infrastructure dans le cloud
-
 # Projet 9 — Modélisez une infrastructure dans le cloud
 
 > OpenClassrooms · Parcours Data Engineer
@@ -87,7 +85,7 @@ Les dossiers de démonstration ont servi à prendre en main les technologies ava
 - Représenter visuellement et documenter une architecture
 - Extraire, transformer et charger des données en temps réel
 
-Remarques (readme.md initial) :
+## Remarques (readme.md initial) :
 
 Ce Readme.md est un readme général qui a pour but de présenter les différents repertoires de ce repository contenant les différentes applications implémentées, la plupart pour des démonstrations :
   - deltalake_demo : Démonstration du format de fichier delta via la libraie deltalake sur un script python.
